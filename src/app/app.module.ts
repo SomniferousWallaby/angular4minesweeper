@@ -11,7 +11,8 @@ import { MatButtonModule, MatCardModule, MatMenuModule, MatToolbarModule, MatIco
 
 
 @NgModule({
-  declarations: [
+  declarations: [ 
+    AppComponent
   ],
 
   entryComponents:[
@@ -37,6 +38,7 @@ import { MatButtonModule, MatCardModule, MatMenuModule, MatToolbarModule, MatIco
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule
+   
   ],
   providers: [],
   bootstrap: [AppComponent]
