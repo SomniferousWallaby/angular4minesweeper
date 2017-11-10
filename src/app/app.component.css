@@ -1,0 +1,16 @@
+.example-spacer{
+    flex: 1 1 auto;
+}
+
+.sidebar-container{
+  background-color: white;
+}
+
+.sidebar-sidenav {
+  padding: 10px;
+}
+
+.main {
+  height: 100%;
+  width: 100%;
+}
