@@ -11,6 +11,10 @@ export default class GridComponent {
   public height: number;
 
   constructor() {
+    this.initGrid();
+  }
+
+  public initGrid = function() {
     this.width = 10;
     this.height = 10;
     this.tiles = [];
@@ -63,6 +67,13 @@ export default class GridComponent {
     let randomRow = Math.floor(Math.random() * (this.height));
     let randomCol = Math.floor(Math.random() * (this.width));
     return {row: randomRow, col: randomCol};
+  }
+
+  public clickTile(tile: Tile){
+    if(tile.isBomb){
+      alert("Game Over");
+      this.initGrid();
+    }
   }
 }
 
