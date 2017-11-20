@@ -9,7 +9,7 @@ td {
 button.tile {
     min-width: 40px;
     width: 40px;
-    height: 40px;
+    height: 42px;
     background-color: #555555;
     color: black;
     cursor: pointer;

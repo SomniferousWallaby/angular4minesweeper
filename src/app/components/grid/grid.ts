@@ -9,14 +9,16 @@ export default class GridComponent {
   public tiles: Tile[][];
   public width: number;
   public height: number;
+  public gameOver: boolean;
 
   constructor() {
     this.initGrid();
   }
 
   public initGrid = function() {
-    this.width = 10;
-    this.height = 10;
+    this.gameOver = false;
+    this.width = 25;
+    this.height = 15;
     this.tiles = [];
     for(var i: number = 0; i < this.height; i++) {
       this.tiles[i] = [];
@@ -24,7 +26,7 @@ export default class GridComponent {
           this.tiles[i][j] = new Tile(i,j);
       }
     }
-    this.initBombs(10);
+    this.initBombs(30);
     this.initBombAdjacencies();
   }
 
@@ -75,12 +77,16 @@ export default class GridComponent {
       if(tile.isBomb){
         // if user clicks on a bomb, game is over
         alert("Game Over");
-        this.initGrid();
+        this.gameOver = true;
       } else if(tile.numAdjacentBombs == 0){
         // if user clicks on an empty space, explore the full contiguous empty space.
+        if(tile.x-1 >= 0 && tile.y+1 < this.height){ this.clickTile(this.tiles[tile.y+1][tile.x-1]) }
         if(tile.x-1 >= 0){ this.clickTile(this.tiles[tile.y][tile.x-1]) }
+        if(tile.x-1 >= 0 && tile.y-1 >= 0){ this.clickTile(this.tiles[tile.y-1][tile.x-1]) }
         if(tile.y-1 >= 0){ this.clickTile(this.tiles[tile.y-1][tile.x]) }
+        if(tile.x+1 < this.width && tile.y-1 >= 0){ this.clickTile(this.tiles[tile.y-1][tile.x+1]) }
         if(tile.x+1 < this.width){ this.clickTile(this.tiles[tile.y][tile.x+1]) }
+        if(tile.x+1 < this.width && tile.y+1 < this.height){ this.clickTile(this.tiles[tile.y+1][tile.x+1]) }
         if(tile.y+1 < this.height){ this.clickTile(this.tiles[tile.y+1][tile.x]) }
       }
     }
