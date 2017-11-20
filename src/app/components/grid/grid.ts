@@ -70,26 +70,38 @@ export default class GridComponent {
   }
 
   public clickTile(tile: Tile){
-    if(tile.isBomb){
-      alert("Game Over");
-      this.initGrid();
+    if(!tile.isRevealed){
+      tile.isRevealed = true;
+      if(tile.isBomb){
+        // if user clicks on a bomb, game is over
+        alert("Game Over");
+        this.initGrid();
+      } else if(tile.numAdjacentBombs == 0){
+        // if user clicks on an empty space, explore the full contiguous empty space.
+        if(tile.x-1 >= 0){ this.clickTile(this.tiles[tile.y][tile.x-1]) }
+        if(tile.y-1 >= 0){ this.clickTile(this.tiles[tile.y-1][tile.x]) }
+        if(tile.x+1 < this.width){ this.clickTile(this.tiles[tile.y][tile.x+1]) }
+        if(tile.y+1 < this.height){ this.clickTile(this.tiles[tile.y+1][tile.x]) }
+      }
     }
   }
 }
-
-
 
 class Tile {
   x: number;
   y: number;
   text: string;
   isBomb: boolean;
+  isRevealed: boolean;
+  isFlagged: boolean;
   numAdjacentBombs: number;
-  constructor(x: number, y: number) {
+  constructor(y: number, x: number) {
     this.x = x;
     this.y = y;
     this.text = "";
     this.isBomb = false;
+    this.isRevealed = false;
+    this.isFlagged = false;
     this.numAdjacentBombs = 0;
   }
 }
