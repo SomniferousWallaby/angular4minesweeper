@@ -1,20 +1,10 @@
-.example-spacer{
-    flex: 1 1 auto;
-}
-
-.sidebar-container{
-  background-color: white;
-}
-
-.sidebar-sidenav {
-  padding: 10px;
-}
-
-.main {
-  height: 100%;
-  width: 100%;
+#cardWrapper {
+  position: absolute;
+  left: 50%;
+  width: fit-content;
 }
 
 mat-card {
   width: fit-content;
+  margin-left: -50%;
 }
