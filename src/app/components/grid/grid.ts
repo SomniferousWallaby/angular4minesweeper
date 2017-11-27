@@ -10,13 +10,19 @@ export default class GridComponent {
   public width: number;
   public height: number;
   public gameOver: boolean;
+  public gameStarted: boolean;
+  public numTilesRevealed: number;
+  public numBombs: number;
 
   constructor() {
     this.initGrid();
   }
 
   public initGrid = function() {
+    this.gameStarted = false;
     this.gameOver = false;
+    this.numBombs = 30;
+    this.numTilesRevealed = 0;
     this.width = 25;
     this.height = 15;
     this.tiles = [];
@@ -26,15 +32,15 @@ export default class GridComponent {
           this.tiles[i][j] = new Tile(i,j);
       }
     }
-    this.initBombs(30);
-    this.initBombAdjacencies();
   }
 
-  public initBombs = function(num: number){
+  public initBombs = function(startTile: Tile, num: number){
     while (num > 0) {
       let coord = this.getRandomTileCoord();
       if(this.tiles[coord.row][coord.col].isBomb){
-        // keep looking
+        // keep looking because there is already a bomb here.
+      } else if((Math.pow(coord.row - startTile.y,2) <= 1) && (Math.pow(coord.col - startTile.x,2) <= 1)) {
+        // keep looking because we want the startTile to be blank.
       } else {
         this.tiles[coord.row][coord.col].isBomb = true;
         this.tiles[coord.row][coord.col].text = "💣";
@@ -72,12 +78,26 @@ export default class GridComponent {
   }
 
   public clickTile(tile: Tile){
-    if(!tile.isRevealed){
+    if(!this.gameStarted){
+      this.initBombs(tile, this.numBombs);
+      this.initBombAdjacencies();
+      this.gameStarted = true;
+    } 
+    if(!tile.isRevealed && !tile.isFlagged){
       tile.isRevealed = true;
+      this.numTilesRevealed++;
+      if(((this.width * this.height) - this.numTilesRevealed) == this.numBombs){
+        this.gameOver = true;
+        setTimeout(function(){
+          alert("You win!!");
+        }, 1000);
+      }
       if(tile.isBomb){
         // if user clicks on a bomb, game is over
-        alert("Game Over");
         this.gameOver = true;
+        setTimeout(function(){
+          alert("Game Over!  You lose. :(");
+        }, 1000);
       } else if(tile.numAdjacentBombs == 0){
         // if user clicks on an empty space, explore the full contiguous empty space.
         if(tile.x-1 >= 0 && tile.y+1 < this.height){ this.clickTile(this.tiles[tile.y+1][tile.x-1]) }
@@ -90,6 +110,13 @@ export default class GridComponent {
         if(tile.y+1 < this.height){ this.clickTile(this.tiles[tile.y+1][tile.x]) }
       }
     }
+  }
+
+  public rightClickTile(tile: Tile, event: Event){
+    if(!tile.isRevealed && !this.gameOver){
+      tile.isFlagged = !tile.isFlagged;
+    }
+    return false;
   }
 }
 

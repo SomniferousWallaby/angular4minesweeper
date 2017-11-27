@@ -16,6 +16,11 @@ button.tile {
     font-size: 0px;
 }
 
+button.tile.flagged {
+    font-size: initial;
+    color: white;
+}
+
 button.tile.revealed {
     background-color: #cccccc;
     font-size: initial;
