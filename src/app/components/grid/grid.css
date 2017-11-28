@@ -17,8 +17,9 @@ button.tile {
 }
 
 button.tile.flagged {
-    font-size: initial;
+    font-size: 20px;
     color: white;
+    font-weight: bold;
 }
 
 button.tile.revealed {

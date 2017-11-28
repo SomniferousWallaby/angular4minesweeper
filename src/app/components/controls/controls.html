@@ -1,0 +1,14 @@
+<form>
+    <mat-form-field>
+        <input matInput name="width" type="number" step="1" min="10" max="100" placeholder="Width" [(ngModel)]="width" [value]="width">
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput name="height" type="number" step="1" min="10" max="100" placeholder="Height" [(ngModel)]="height" [value]="height">
+    </mat-form-field>
+</form>
+<form>
+    <mat-form-field>
+        <input matInput name="numBombs" type="number" step="1" min="5" [max]="width*height*0.5" placeholder="Number of Bombs" [(ngModel)]="numBombs" [value]="numBombs">
+    </mat-form-field>
+    <button mat-button (click)="resetClicked()">Reset</button>
+</form>

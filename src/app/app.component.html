@@ -1,7 +1,7 @@
 <div id="cardWrapper">
     <mat-card oncontextmenu="return false;">
         <mat-card-title>Minesweeper</mat-card-title>
-        <minesweeper-grid></minesweeper-grid>
-        <!-- <minesweeper-form></minesweeper-form> -->
+        <minesweeper-grid #grid></minesweeper-grid>
+        <minesweeper-controls (resetEvent)="grid.initGrid($event)"></minesweeper-controls>
     </mat-card>
 </div>

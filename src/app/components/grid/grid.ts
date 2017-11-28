@@ -15,15 +15,19 @@ export default class GridComponent {
   public numBombs: number;
 
   constructor() {
-    this.initGrid();
+    this.width = 10;
+    this.height = 10;
+    this.numBombs = 10;
+    this.initGrid({width: this.width, height: this.height, numBombs: this.numBombs});
   }
 
-  public initGrid = function() {
+  public initGrid = function($event) {
     this.gameStarted = false;
     this.gameOver = false;
-    this.width = 25;
-    this.height = 15;
-    this.numBombs = 30;
+    console.log($event);
+    this.width = $event.width;
+    this.height = $event.height;
+    this.numBombs = $event.numBombs;
     this.numTilesRevealed = 0;
     this.tiles = [];
     for(var i: number = 0; i < this.height; i++) {
@@ -100,7 +104,7 @@ export default class GridComponent {
         }, 1000);
       } else if(tile.numAdjacentBombs == 0){
         // if user clicks on an empty space, explore the full contiguous empty space.
-        // setTimeout(() => {
+        setTimeout(() => {
           if(tile.x-1 >= 0 && tile.y+1 < this.height){ this.clickTile(this.tiles[tile.y+1][tile.x-1]) }
           if(tile.x-1 >= 0){ this.clickTile(this.tiles[tile.y][tile.x-1]) }
           if(tile.x-1 >= 0 && tile.y-1 >= 0){ this.clickTile(this.tiles[tile.y-1][tile.x-1]) }
@@ -109,7 +113,7 @@ export default class GridComponent {
           if(tile.x+1 < this.width){ this.clickTile(this.tiles[tile.y][tile.x+1]) }
           if(tile.x+1 < this.width && tile.y+1 < this.height){ this.clickTile(this.tiles[tile.y+1][tile.x+1]) }
           if(tile.y+1 < this.height){ this.clickTile(this.tiles[tile.y+1][tile.x]) }
-        // },30);
+        },30);
       }
     }
   }
