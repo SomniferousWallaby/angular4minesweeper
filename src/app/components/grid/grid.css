@@ -10,7 +10,7 @@ button.tile {
     min-width: 40px;
     width: 40px;
     height: 42px;
-    background-color: #555555;
+    background-color: #3F51B5;
     color: black;
     cursor: pointer;
     font-size: 0px;
@@ -20,9 +20,18 @@ button.tile.flagged {
     font-size: 20px;
     color: white;
     font-weight: bold;
+    text-indent: -3px;
 }
 
 button.tile.revealed {
-    background-color: #cccccc;
-    font-size: initial;
+    background-color: #CED7FD;
+    font-size: 16px;
+    -webkit-box-shadow: inset 0px 0px 1px 0px rgba(0,0,0,0.5);
+    -moz-box-shadow:    inset 0px 0px 1px 0px rgba(0,0,0,0.5);
+    box-shadow:         inset 0px 0px 1px 0px rgba(0,0,0,0.5);
+}
+
+button.tile.revealed.isBomb {
+    font-size: 18px;
+    text-indent: -7px;
 }

@@ -10,5 +10,5 @@
     <mat-form-field>
         <input matInput name="numBombs" type="number" step="1" min="5" [max]="width*height*0.5" placeholder="Number of Bombs" [(ngModel)]="numBombs" [value]="numBombs">
     </mat-form-field>
-    <button mat-button (click)="resetClicked()">Reset</button>
+    <button mat-raised-button color="primary" (click)="resetClicked()">Reset</button>
 </form>

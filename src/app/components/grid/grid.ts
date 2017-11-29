@@ -104,7 +104,7 @@ export default class GridComponent {
         }, 1000);
       } else if(tile.numAdjacentBombs == 0){
         // if user clicks on an empty space, explore the full contiguous empty space.
-        setTimeout(() => {
+        // setTimeout(() => {
           if(tile.x-1 >= 0 && tile.y+1 < this.height){ this.clickTile(this.tiles[tile.y+1][tile.x-1]) }
           if(tile.x-1 >= 0){ this.clickTile(this.tiles[tile.y][tile.x-1]) }
           if(tile.x-1 >= 0 && tile.y-1 >= 0){ this.clickTile(this.tiles[tile.y-1][tile.x-1]) }
@@ -113,7 +113,7 @@ export default class GridComponent {
           if(tile.x+1 < this.width){ this.clickTile(this.tiles[tile.y][tile.x+1]) }
           if(tile.x+1 < this.width && tile.y+1 < this.height){ this.clickTile(this.tiles[tile.y+1][tile.x+1]) }
           if(tile.y+1 < this.height){ this.clickTile(this.tiles[tile.y+1][tile.x]) }
-        },30);
+        // },30);
       }
     }
   }
