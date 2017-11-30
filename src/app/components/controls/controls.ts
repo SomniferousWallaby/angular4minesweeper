@@ -13,9 +13,9 @@ export default class ControlsComponent {
     @Output() resetEvent = new EventEmitter();
 
   constructor() {
-    this.width = 10;
-    this.height = 10;
-    this.numBombs = 10;
+    this.width = 25;
+    this.height = 15;
+    this.numBombs = 50;
   }
 
   public resetClicked(){

@@ -15,9 +15,9 @@ export default class GridComponent {
   public numBombs: number;
 
   constructor() {
-    this.width = 10;
-    this.height = 10;
-    this.numBombs = 10;
+    this.width = 25;
+    this.height = 15;
+    this.numBombs = 50;
     this.initGrid({width: this.width, height: this.height, numBombs: this.numBombs});
   }
 

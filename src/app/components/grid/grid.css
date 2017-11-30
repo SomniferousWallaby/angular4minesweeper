@@ -1,5 +1,5 @@
 table {
-    color: blue;
+    
 }
 
 td {
@@ -7,31 +7,33 @@ td {
 }
 
 button.tile {
-    min-width: 40px;
-    width: 40px;
-    height: 42px;
+    min-width: 30px;
+    width: 30px;
+    height: 32px;
     background-color: #3F51B5;
     color: black;
     cursor: pointer;
     font-size: 0px;
+    line-height: 6px;
+    text-indent: -3px;
 }
 
 button.tile.flagged {
-    font-size: 20px;
+    font-size: 17px;
     color: white;
     font-weight: bold;
-    text-indent: -3px;
+    text-indent: -6px;
 }
 
 button.tile.revealed {
     background-color: #CED7FD;
-    font-size: 16px;
+    font-size: 14px;
     -webkit-box-shadow: inset 0px 0px 1px 0px rgba(0,0,0,0.5);
     -moz-box-shadow:    inset 0px 0px 1px 0px rgba(0,0,0,0.5);
     box-shadow:         inset 0px 0px 1px 0px rgba(0,0,0,0.5);
 }
 
 button.tile.revealed.isBomb {
-    font-size: 18px;
-    text-indent: -7px;
+    font-size: 17px;
+    text-indent: -10px;
 }
